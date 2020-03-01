@@ -16,7 +16,7 @@ class graph():
     
     def add_edge(self):
         print("enter the node-pairs for edge")
-        self.edgelist.append(tuple(input()))
+        self.edgelist.append(tuple(input().split(' ')))
 
     def printGraph(self):
         print(self.v_dict,'\n',self.edgelist)
@@ -73,88 +73,91 @@ def main():
     createGraphBfs()
 
 main()
-# SAMPLE INPUT & OUTPUT 
+# SAMPLE INPUT & OUTPUT
+# 
 # Enter number of nodes: 
 # 15
 # Enter number of edges
 # 14
 # Enter nodes
-# A
-# B
-# C
-# D
-# E
-# F
-# G
-# H
-# I
-# J
-# K
-# L
-# M
-# N
-# O
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+# 8
+# 9
+# 10
+# 11
+# 12
+# 13
+# 14 
+# 15
 # Enter edges
 # enter the node-pairs for edge
-# AB
+# 1 2
 # enter the node-pairs for edge
-# AC
+# 1 3
 # enter the node-pairs for edge
-# AD
+# 1 4
 # enter the node-pairs for edge
-# BE
+# 2 5
 # enter the node-pairs for edge
-# BF
+# 2 6
 # enter the node-pairs for edge
-# BG
+# 2 7
 # enter the node-pairs for edge
-# CJ
+# 3 8
 # enter the node-pairs for edge
-# JK
+# 8 9
 # enter the node-pairs for edge
-# JL
+# 8 10
 # enter the node-pairs for edge
-# DM
+# 4 11
 # enter the node-pairs for edge
-# MN
+# 11 12
 # enter the node-pairs for edge
-# NH
+# 12 13
 # enter the node-pairs for edge
-# NI
+# 12 14
 # enter the node-pairs for edge
-# NO
-# {'A': ['B', 'C', 'D'], 'B': ['A', 'E', 'F', 'G'], 'C': ['A', 'J'], 'D': ['A', 'M'], 'E': ['B'], 'F': ['B'], 'G': ['B'], 'H': ['N'], 'I': ['N'], 'J': ['C', 'K', 'L'], 'K': ['J'], 'L': ['J'], 'M': ['D', 'N'], 'N': ['M', 'H', 'I', 'O'], 'O': ['N']}
-#  [('A', 'B'), ('A', 'C'), ('A', 'D'), ('B', 'E'), ('B', 'F'), ('B', 'G'), ('C', 'J'), ('J', 'K'), ('J', 'L'), ('D', 'M'), ('M', 'N'), ('N', 'H'), ('N', 'I'), ('N', 'O')]
-# Enter Source Node: A
+# 12 15
+# {'1': ['2', '3', '4'], '2': ['1', '5', '6', '7'], '3': ['1', '8'], '4': ['1', '11'], '5': ['2'], '6': ['2'], '7': ['2'], '8': ['3', '9', '10'], '9': ['8'], 
+# '10': ['8'], '11': ['4', '12'], '12': ['11', '13', '14', '15'], '13': ['12'], '14': ['12'], '15': ['12']}
+#  [('1', '2'), ('1', '3'), ('1', '4'), ('2', '5'), ('2', '6'), ('2', '7'), ('3', '8'), ('8', '9'), ('8', '10'), ('4', '11'), ('11', '12'), ('12', '13'), ('12', '14'), ('12', '15')]
+# Enter Source Node: 1
 # BFS
 
-# deque(['A'])
-# Visited ['A']
-# deque(['B', 'C', 'D'])
-# Visited ['A', 'B']
-# deque(['C', 'D', 'E', 'F', 'G'])
-# Visited ['A', 'B', 'C']
-# deque(['D', 'E', 'F', 'G', 'J'])
-# Visited ['A', 'B', 'C', 'D']
-# deque(['E', 'F', 'G', 'J', 'M'])
-# Visited ['A', 'B', 'C', 'D', 'E']
-# deque(['F', 'G', 'J', 'M'])
-# Visited ['A', 'B', 'C', 'D', 'E', 'F']
-# deque(['G', 'J', 'M'])
-# Visited ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-# deque(['J', 'M'])
-# Visited ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J']
-# deque(['M', 'K', 'L'])
-# Visited ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J', 'M']
-# deque(['K', 'L', 'N'])
-# Visited ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J', 'M', 'K']
-# deque(['L', 'N'])
-# Visited ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J', 'M', 'K', 'L']
-# deque(['N'])
-# Visited ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J', 'M', 'K', 'L', 'N']
-# deque(['H', 'I', 'O'])
-# Visited ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J', 'M', 'K', 'L', 'N', 'H']
-# deque(['I', 'O'])
-# Visited ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J', 'M', 'K', 'L', 'N', 'H', 'I']
-# deque(['O'])
-# Visited ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'J', 'M', 'K', 'L', 'N', 'H', 'I', 'O']
+# deque(['1'])
+# Visited ['1']
+# deque(['2', '3', '4'])
+# Visited ['1', '2']
+# deque(['3', '4', '5', '6', '7'])
+# Visited ['1', '2', '3']
+# deque(['4', '5', '6', '7', '8'])
+# Visited ['1', '2', '3', '4']
+# deque(['5', '6', '7', '8', '11'])
+# Visited ['1', '2', '3', '4', '5']
+# deque(['6', '7', '8', '11'])
+# Visited ['1', '2', '3', '4', '5', '6']
+# deque(['7', '8', '11'])
+# Visited ['1', '2', '3', '4', '5', '6', '7']
+# deque(['8', '11'])
+# Visited ['1', '2', '3', '4', '5', '6', '7', '8']
+# deque(['11', '9', '10'])
+# Visited ['1', '2', '3', '4', '5', '6', '7', '8', '11']
+# deque(['9', '10', '12'])
+# Visited ['1', '2', '3', '4', '5', '6', '7', '8', '11', '9']
+# deque(['10', '12'])
+# Visited ['1', '2', '3', '4', '5', '6', '7', '8', '11', '9', '10']
+# deque(['12'])
+# Visited ['1', '2', '3', '4', '5', '6', '7', '8', '11', '9', '10', '12']
+# deque(['13', '14', '15'])
+# Visited ['1', '2', '3', '4', '5', '6', '7', '8', '11', '9', '10', '12', '13']
+# deque(['14', '15'])
+# Visited ['1', '2', '3', '4', '5', '6', '7', '8', '11', '9', '10', '12', '13', '14']
+# deque(['15'])
+# Visited ['1', '2', '3', '4', '5', '6', '7', '8', '11', '9', '10', '12', '13', '14', '15']
+#  
