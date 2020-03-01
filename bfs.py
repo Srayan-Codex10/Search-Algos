@@ -70,6 +70,6 @@ def createGraphBfs():
 
 
 def main():
-    g = createGraphBfs()
+    createGraphBfs()
 
 main()
