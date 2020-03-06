@@ -1,4 +1,5 @@
 from time import sleep
+from sys import exit
 class node():
     #pass
     name = ''
@@ -7,7 +8,8 @@ class node():
     dis_time = 0 
     finish_time = 0
 
-    def __init__(self):
+    def __init__(self,name):
+        self.name = name
         self.color = 'white'
 
 time = 0
@@ -15,31 +17,16 @@ edge_list = []
 node_list = []
 adj_list = {}
 
-def createGraph():
-    i = 0
-    print("Enter number of nodes in graph")
-    n = int(input("Nodes: "))
+def createGraph(n,e):
 
-    print("Enter number of edges in graph")
-    e = int(input("Edges: "))
-
-    print("Enter node names")
-    while(i<n):
-        g = node()
-        g.name = str(input('Node: '))
-        adj_list[g.name] = []
-        node_list.append(g)
-        print(g.color)
-        i += 1
+    for vertex in n:
+        node_list.append(node(vertex))
     
-    i = 0
-    print("Enter node pairs for edge")
-    while(i<e):
-        edge_list.append(tuple(input("Edge: ").split(' ')))
-        i += 1
+    for n_object in node_list:
+        adj_list[n_object.name] = []
 
-    print("Creating adjacency list....")
-    sleep(0.99)
+    edge_list = e
+
     for key in adj_list:
         for e_tup in edge_list:
             if key in e_tup:
@@ -49,7 +36,34 @@ def createGraph():
     for key in adj_list:
         while key in adj_list[key]:
             adj_list[key].remove(key)
+            
+    print(edge_list,'\n\n',node_list,'\n\n',adj_list)
 
+
+def main():
+    try:
+        input_file = open("input.txt","r+")
+    except:
+        print("Creating input file....")
+        input_file = open("input.txt","w+")
+    if(input_file.readline() == ''):
+        print("Write to file then execute ... exiting program")
+        exit()
+    l = 0
+    input_file.seek(0,0)#set pointer to beginning of file
+    while l < 2:
+        if l == 1:
+            e_n = input_file.readline().strip().split(' ')
+        else:
+            v_n = input_file.readline().strip().split(' ')
+        l += 1
+    input_file.close()
+    y_n = []
+    for e in e_n:
+        y_n.append(tuple(e))
+    createGraph(v_n,y_n)
+
+main()
 
 def dfs():
     for vertex in node_list:
@@ -71,13 +85,3 @@ def dfs_visit(u):
     u.color = 'black'
     time += 1
     u.finish_time = time
-
-        
-
-createGraph()
-dfs()
-
-print(adj_list)
-print(edge_list)
-for vertex in node_list:
-    print(vertex.name,vertex.color,vertex.pi,vertex.dis_time,vertex.finish_time)
