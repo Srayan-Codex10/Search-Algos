@@ -51,14 +51,33 @@ def createGraph():
             adj_list[key].remove(key)
 
 
-def dfs(G):
-    pass
-def dfs_visit(G,u):
-    pass
+def dfs():
+    for vertex in node_list:
+        if vertex.color == 'white':
+            dfs_visit(vertex)
+
+def dfs_visit(u):
+    print(u,u.name)
+    u.color = 'gray'
+    global time 
+    time += 1
+    u.dis_time = time
+    # for v in adj_list[u.name]:
+    #     for n in node_list:
+    #         if n.name == v:
+    #             n.pi = v
+    #             dfs_visit(n)
+
+    u.color = 'black'
+    time += 1
+    u.finish_time = time
+
+        
 
 createGraph()
+dfs()
 
-# print(adj_list)
-# print(edge_list)
-# for vertex in node_list:
-#     print(vertex.name,vertex.color,vertex.pi,vertex.time,vertex.dis_time,vertex.finish_time)
+print(adj_list)
+print(edge_list)
+for vertex in node_list:
+    print(vertex.name,vertex.color,vertex.pi,vertex.dis_time,vertex.finish_time)
