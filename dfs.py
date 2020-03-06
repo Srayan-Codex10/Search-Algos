@@ -1,7 +1,5 @@
-from time import sleep
 from sys import exit
 class node():
-    #pass
     name = ''
     color = ''
     pi = ''
