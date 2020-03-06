@@ -36,9 +36,31 @@ def createGraph(n,e):
     for key in adj_list:
         while key in adj_list[key]:
             adj_list[key].remove(key)
-            
-    print(edge_list,'\n\n',node_list,'\n\n',adj_list)
 
+    #print('Edges: ',edge_list,'\n\n','Adjacency List: ',adj_list)
+
+
+def dfs():
+    for vertex in node_list:
+        if vertex.color == 'white':
+            dfs_visit(vertex)
+
+def dfs_visit(u):
+    u.color = 'gray'
+    print("Visited: ",u.name,'\t',"Predecessor: ",u.pi)
+    global time 
+    time += 1
+    u.dis_time = time
+    for v in adj_list[u.name]:
+        for n in node_list:
+            if n.name == v:
+                if n.color == 'white':
+                    n.pi = u.name
+                    dfs_visit(n)
+
+    u.color = 'black'
+    time += 1
+    u.finish_time = time
 
 def main():
     try:
@@ -62,26 +84,26 @@ def main():
     for e in e_n:
         y_n.append(tuple(e))
     createGraph(v_n,y_n)
+    dfs()
+
 
 main()
 
-def dfs():
-    for vertex in node_list:
-        if vertex.color == 'white':
-            dfs_visit(vertex)
+print("Node",'\t','Discovery Time','\t','Finish Time','\t','Predecessor','\t','Color')
+for vertex in node_list:
+    print(vertex.name,'\t',vertex.dis_time,'\t\t\t',vertex.finish_time,'\t\t',vertex.pi,'\t\t',vertex.color)
 
-def dfs_visit(u):
-    print(u,u.name)
-    u.color = 'gray'
-    global time 
-    time += 1
-    u.dis_time = time
-    # for v in adj_list[u.name]:
-    #     for n in node_list:
-    #         if n.name == v:
-    #             n.pi = v
-    #             dfs_visit(n)
 
-    u.color = 'black'
-    time += 1
-    u.finish_time = time
+# Visited:  A      Predecessor:
+# Visited:  B      Predecessor:  A
+# Visited:  E      Predecessor:  B
+# Visited:  F      Predecessor:  B
+# Visited:  C      Predecessor:  B
+# Visited:  D      Predecessor:  C
+# Node     Discovery Time          Finish Time     Predecessor     Color
+# A        1                       12                              black
+# B        2                       11              A               black
+# C        7                       10              B               black
+# D        8                       9               C               black
+# E        3                       4               B               black
+# F        5                       6               B               black
