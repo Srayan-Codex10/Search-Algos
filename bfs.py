@@ -43,8 +43,7 @@ def createGraphBfs(n,e):
     G.bfs(str(input("Enter Source Node: ")))
 
 def main():
-    #if input file is not present then it is created
-    try:
+    try:                                        #if input file is not present then it is created
         input_file = open("input.txt","r+")
     except:
         print("Creating input file....")
@@ -52,16 +51,10 @@ def main():
     if(input_file.readline() == ''):
         print("Write to file then execute ... exiting program")
         exit()
-    l = 0
     input_file.seek(0,0)#set pointer to beginning of file
-    while l < 2:
-        if l == 1:
-            e_n = input_file.readline().strip().split(' ')
-        else:
-            v_n = input_file.readline().strip().split(' ')
-        l += 1
+    v_n = input_file.readline().strip().split(' ')
+    e_n = input_file.readline().strip().split(' ')
     input_file.close()
-    #print(e_n,v_n)
     y_n = []
     for e in e_n:
         y_n.append(tuple(e))
