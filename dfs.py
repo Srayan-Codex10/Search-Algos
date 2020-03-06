@@ -1,4 +1,5 @@
 from sys import exit
+from collections import defaultdict
 class node():
     name = ''
     color = ''
@@ -13,27 +14,19 @@ class node():
 time = 0
 edge_list = []
 node_list = []
-adj_list = {}
+adj_list = defaultdict(list)
 
 def createGraph(n,e):
-
-    for vertex in n:
-        node_list.append(node(vertex))
     
-    for n_object in node_list:
-        adj_list[n_object.name] = []
-
+    for name in n:
+        node_list.append(node(name))
+    
+    global edge_list
     edge_list = e
 
-    for key in adj_list:
-        for e_tup in edge_list:
-            if key in e_tup:
-                adj_list[key].append(e_tup[0])
-                adj_list[key].append(e_tup[1])
-
-    for key in adj_list:
-        while key in adj_list[key]:
-            adj_list[key].remove(key)
+    for a,b in edge_list:
+        adj_list[a].append(b)
+        adj_list[b].append(a)
 
     #print('Edges: ',edge_list,'\n\n','Adjacency List: ',adj_list)
 
@@ -91,17 +84,24 @@ print("Node",'\t','Discovery Time','\t','Finish Time','\t','Predecessor','\t','C
 for vertex in node_list:
     print(vertex.name,'\t',vertex.dis_time,'\t\t\t',vertex.finish_time,'\t\t',vertex.pi,'\t\t',vertex.color)
 
-
 # Visited:  A      Predecessor:
 # Visited:  B      Predecessor:  A
+# Visited:  D      Predecessor:  B
 # Visited:  E      Predecessor:  B
-# Visited:  F      Predecessor:  B
-# Visited:  C      Predecessor:  B
-# Visited:  D      Predecessor:  C
+# Visited:  H      Predecessor:  E
+# Visited:  I      Predecessor:  H
+# Visited:  J      Predecessor:  H
+# Visited:  C      Predecessor:  A
+# Visited:  F      Predecessor:  C
+# Visited:  G      Predecessor:  C
 # Node     Discovery Time          Finish Time     Predecessor     Color
-# A        1                       12                              black
-# B        2                       11              A               black
-# C        7                       10              B               black
-# D        8                       9               C               black
-# E        3                       4               B               black
-# F        5                       6               B               black
+# A        1                       20                              black
+# B        2                       13              A               black
+# C        14                      19              A               black
+# D        3                       4               B               black
+# E        5                       12              B               black
+# F        15                      16              C               black
+# G        17                      18              C               black
+# H        6                       11              E               black
+# I        7                       8               H               black
+# J        9                       10              H               black
