@@ -1,5 +1,3 @@
-# class node:
-#     pass
 from collections import deque
 from sys import exit
 class graph():
@@ -27,7 +25,6 @@ class graph():
              while key in self.v_dict[key]:
                  self.v_dict[key].remove(key)
 
-        #print(self.v_dict)
 
     def bfs(self,source):
        queue = deque()
