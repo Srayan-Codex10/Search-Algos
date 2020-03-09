@@ -8,6 +8,8 @@ def interpol_search(arr, target, low, hi):
             hi = pos - 1
         else:
             low = pos + 1
+    else:
+        return -1
 
 def main():
 
