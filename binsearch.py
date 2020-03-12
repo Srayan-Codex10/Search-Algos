@@ -1,12 +1,12 @@
 def binsearch(arr,left,right,val):
 	if(left <= right):
 		mid = (left+right)//2
-		#print(mid)
+		print(mid)
 		if(arr[mid]==val):
 			return mid
     
 		elif(arr[mid]>=val):
-			return binsearch(arr,0,mid-1,val)
+			return binsearch(arr,left,mid-1,val)
 
 		else:
 			return binsearch(arr,mid+1,right,val)
