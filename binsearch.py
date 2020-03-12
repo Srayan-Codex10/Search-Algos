@@ -1,7 +1,7 @@
 def binsearch(arr,left,right,val):
 	if(left <= right):
 		mid = (left+right)//2
-		print(mid)
+		#print(mid)
 		if(arr[mid]==val):
 			return mid
     
